@@ -1,0 +1,163 @@
+﻿Refined Historical Serie A Dataset (CSV Format)
+1. CSV Structure and Header Configuration
+"match_date,home_team,away_team,odds_home,odds_draw,odds_away,asian
+_handicap_line,odds_under_25,odds_over_25,ht_score,ft_score"
+2. Source Data Mapping and Transformation Rules
+"As a Data Engineer, I have implemented a robust ETL (Extract, Transform, Load) pipeline to
+convert the raw ""24-25.csv"" source into a standardized analytical format. The following logic
+was applied:| Target Header | Source Column | Transformation / Rule || ------ | ------ | ------ ||
+match_date | Date | Convert DD/MM/YYYY to YYYY-MM-DD . || home_team | HomeTeam
+| Direct extraction. || away_team | AwayTeam | Direct extraction. || odds_home | B365H |
+Numeric conversion; standardized to  2 decimal places . || odds_draw | B365D | Numeric
+conversion; standardized to  2 decimal places . || odds_away | B365A | Numeric"
+"conversion; standardized to  2 decimal places . || asian_handicap_line | AHh | Clean
+quotes/commas; standardized to  2 decimal places . || odds_under_25 | B365<2.5 |
+Numeric conversion; standardized to  2 decimal places . || odds_over_25 | B365>2.5 |
+Numeric conversion; standardized to  2 decimal places . || ht_score | HTHG, HTAG |
+Synthesize as ""HomeScore-AwayScore"" (e.g., ""1-0""). || ft_score | FTHG, FTAG | Synthesize
+as ""HomeScore-AwayScore"" (e.g., ""2-1""). |"
+3. Data Generation (CSV Payload)
+"match_date,home_team,away_team,odds_home,odds_draw,odds_away,asian
+_handicap_line,odds_under_25,odds_over_25,ht_score,ft_score
+2024-08-17,Genoa,Inter,6.50,4.00,1.53,1.00,2.00,1.90,1-1,2-2
+2024-08-17,Parma,Fiorentina,3.50,3.20,2.20,0.25,2.00,1.90,1-0,1-1
+2024-08-17,Empoli,Monza,2.50,3.20,3.00,-0.25,1.73,2.10,0-0,0-0
+2024-08-17,Milan,Torino,1.62,3.80,5.75,-0.75,1.95,1.95,0-1,2-2
+2024-08-18,Bologna,Udinese,1.91,3.40,4.33,-0.50,1.62,2.30,0-0,1-1
+2024-08-18,Verona,Napoli,4.75,3.60,1.75,0.75,1.97,1.93,0-0,3-0
+2024-08-18,Cagliari,Roma,4.10,3.40,1.95,0.50,1.91,1.99,0-0,0-0
+2024-08-18,Lazio,Venezia,1.48,4.10,7.50,-1.25,2.01,1.89,2-1,3-1
+2024-08-19,Lecce,Atalanta,4.20,3.70,1.85,0.50,1.92,1.98,0-2,0-4
+2024-08-19,Juventus,Como,1.33,5.00,9.50,-1.50,2.04,1.86,2-0,3-0
+2024-08-24,Parma,Milan,4.75,3.90,1.70,0.75,2.10,1.73,1-0,2-1
+2024-08-24,Udinese,Lazio,3.30,3.10,2.35,0.25,1.62,2.30,1-0,2-1
+2024-08-24,Inter,Lecce,1.20,7.00,13.00,-1.75,2.38,1.57,1-0,2-0
+2024-08-24,Monza,Genoa,2.60,3.10,2.88,0.00,1.62,2.30,0-1,0-1
+2024-08-25,Fiorentina,Venezia,1.42,4.75,7.00,-1.25,2.02,1.88,0-0,0
+-0
+2024-08-25,Torino,Atalanta,3.20,3.10,2.38,0.25,1.73,2.10,1-1,2-1
+2024-08-25,Napoli,Bologna,1.90,3.50,4.10,-0.50,1.87,2.03,1-0,3-0
+2024-08-25,Roma,Empoli,1.50,4.33,6.50,-1.00,2.03,1.87,0-1,1-2
+2024-08-26,Cagliari,Como,2.10,3.40,3.40,-0.25,1.89,2.01,1-0,1-1
+2024-08-26,Verona,Juventus,5.25,3.75,1.67,0.75,1.80,2.00,0-2,0-3"
+"2024-08-30,Venezia,Torino,3.40,3.30,2.20,0.25,1.67,2.15,0-0,0-1
+2024-08-30,Inter,Atalanta,1.57,4.33,5.50,-1.00,2.30,1.62,2-0,4-0
+2024-08-31,Bologna,Empoli,1.62,3.75,6.00,-0.75,1.73,2.10,1-1,1-1
+2024-08-31,Lecce,Cagliari,2.25,3.20,3.40,-0.25,1.62,2.30,1-0,1-0
+2024-08-31,Lazio,Milan,2.90,3.40,2.40,0.25,2.00,1.90,0-1,2-2
+2024-08-31,Napoli,Parma,1.48,4.33,7.00,-1.25,2.10,1.73,0-1,2-1
+2024-09-01,Fiorentina,Monza,1.67,3.90,5.00,-0.75,1.86,2.04,1-2,2-2
+2024-09-01,Genoa,Verona,2.00,3.30,4.00,-0.50,1.62,2.30,0-0,0-2
+2024-09-01,Juventus,Roma,1.75,3.60,5.00,-0.75,1.80,2.00,0-0,0-0
+2024-09-01,Udinese,Como,2.05,3.40,3.75,-0.50,1.73,2.10,1-0,1-0
+2024-09-14,Como,Bologna,3.00,3.25,2.45,0.00,1.67,2.20,1-0,2-2
+2024-09-14,Empoli,Juventus,5.25,3.60,1.70,0.75,1.67,2.20,0-0,0-0
+2024-09-14,Milan,Venezia,1.30,5.75,9.00,-1.50,2.50,1.53,4-0,4-0
+2024-09-15,Genoa,Roma,3.25,3.30,2.25,0.25,1.67,2.20,0-1,1-1
+2024-09-15,Atalanta,Fiorentina,1.80,3.60,4.50,-0.75,2.10,1.73,3-2,
+3-2
+2024-09-15,Torino,Lecce,1.80,3.50,4.75,-0.50,1.62,2.30,0-0,0-0
+2024-09-15,Cagliari,Napoli,4.33,3.75,1.80,0.50,2.01,1.89,0-1,0-4
+2024-09-15,Monza,Inter,8.00,4.75,1.40,1.25,2.20,1.67,0-0,1-1
+2024-09-16,Parma,Udinese,2.25,3.40,3.20,-0.25,1.86,2.04,2-0,2-3
+2024-09-16,Lazio,Verona,1.62,3.80,6.00,-0.75,1.84,2.06,2-1,2-1
+2024-09-20,Cagliari,Empoli,2.15,3.40,3.40,-0.25,1.67,2.20,0-1,0-2
+2024-09-20,Verona,Torino,2.70,3.00,2.80,0.00,1.50,2.63,1-2,2-3
+2024-09-21,Venezia,Genoa,3.25,3.20,2.35,0.25,1.67,2.20,0-0,2-0
+2024-09-21,Juventus,Napoli,2.20,3.40,3.30,-0.25,1.67,2.20,0-0,0-0
+2024-09-21,Lecce,Parma,2.20,3.50,3.25,-0.25,1.99,1.91,1-0,2-2
+2024-09-22,Fiorentina,Lazio,2.25,3.40,3.20,-0.25,1.84,2.06,0-1,2-1
+2024-09-22,Monza,Bologna,3.30,3.10,2.40,0.25,1.62,2.30,1-1,1-2
+2024-09-22,Roma,Udinese,1.62,4.20,5.25,-0.75,1.85,2.05,1-0,3-0
+2024-09-22,Inter,Milan,1.65,4.00,5.25,-0.75,2.20,1.67,1-1,1-2
+2024-09-24,Atalanta,Como,1.44,4.50,7.00,-1.25,2.20,1.67,1-0,2-3
+2024-09-27,Milan,Lecce,1.33,5.75,8.00,-1.50,2.63,1.50,3-0,3-0
+2024-09-28,Udinese,Inter,7.00,4.33,1.48,1.00,2.10,1.73,1-2,2-3
+2024-09-28,Genoa,Juventus,5.50,3.50,1.70,0.75,1.62,2.30,0-0,0-3
+2024-09-28,Bologna,Atalanta,3.00,3.30,2.40,0.25,1.88,2.02,0-0,1-1
+2024-09-29,Torino,Lazio,2.90,3.10,2.55,0.00,1.67,2.20,0-1,2-3
+2024-09-29,Como,Verona,2.10,3.40,3.60,-0.25,1.73,2.10,1-0,3-2
+2024-09-29,Roma,Venezia,1.40,4.75,8.00,-1.25,2.10,1.73,0-1,2-1
+2024-09-29,Empoli,Fiorentina,3.40,3.30,2.20,0.25,1.67,2.20,0-0,0-0
+2024-09-29,Napoli,Monza,1.36,5.00,8.50,-1.25,2.10,1.73,2-0,2-0
+2024-09-30,Parma,Cagliari,2.10,3.60,3.40,-0.25,2.10,1.73,0-1,2-3
+2024-10-04,Napoli,Como,1.45,4.33,7.00,-1.25,2.10,1.73,1-1,3-1
+2024-10-04,Verona,Venezia,2.50,3.20,2.90,-0.25,1.73,2.10,1-1,2-1
+2024-10-05,Udinese,Lecce,2.20,3.30,3.30,-0.25,1.73,2.10,0-0,1-0
+2024-10-05,Atalanta,Genoa,1.45,4.75,6.50,-1.25,2.00,1.80,1-0,5-1
+2024-10-05,Inter,Torino,1.30,5.00,11.00,-1.50,2.20,1.67,2-1,3-2
+2024-10-06,Juventus,Cagliari,1.38,5.00,8.00,-1.25,1.91,1.99,1-0,1-
+1"
+
+"2024-10-06,Bologna,Parma,1.80,3.70,4.33,-0.50,2.03,1.87,0-0,0-0
+2024-10-06,Lazio,Empoli,1.57,4.00,6.00,-1.00,1.88,2.02,1-1,2-1
+2024-10-06,Monza,Roma,4.20,3.40,1.91,0.50,1.73,2.10,0-0,1-1
+2024-10-06,Fiorentina,Milan,3.10,3.60,2.20,0.25,1.73,2.10,1-0,2-1
+2024-10-19,Como,Parma,1.95,3.60,3.80,-0.50,2.20,1.67,1-1,1-1
+2024-10-19,Genoa,Bologna,3.75,3.10,2.15,0.25,1.62,2.30,0-1,2-2
+2024-10-19,Milan,Udinese,1.38,4.75,8.50,-1.25,2.38,1.57,1-0,1-0
+2024-10-19,Juventus,Lazio,2.05,3.30,3.80,-0.50,1.67,2.20,0-0,1-0
+2024-10-20,Empoli,Napoli,6.00,3.50,1.67,0.75,1.73,2.10,0-0,0-1
+2024-10-20,Lecce,Fiorentina,3.20,3.30,2.30,0.25,1.86,2.04,0-3,0-6
+2024-10-20,Venezia,Atalanta,5.50,4.00,1.62,0.75,2.10,1.73,0-1,0-2
+2024-10-20,Cagliari,Torino,2.80,3.10,2.70,0.00,1.73,2.10,1-1,3-2
+2024-10-20,Roma,Inter,4.20,3.70,1.85,0.50,2.10,1.73,0-0,0-1
+2024-10-21,Verona,Monza,2.30,3.00,3.50,-0.25,1.62,2.30,0-1,0-3
+2024-10-25,Udinese,Cagliari,2.20,3.30,3.30,-0.25,1.73,2.10,1-0,2-0
+2024-10-25,Torino,Como,2.63,3.00,2.90,0.00,1.67,2.20,0-0,1-0
+2024-10-26,Napoli,Lecce,1.25,6.00,12.00,-1.50,2.10,1.73,0-0,1-0
+2024-10-26,Atalanta,Verona,1.38,4.75,8.00,-1.25,2.50,1.53,5-1,6-1
+2024-10-27,Parma,Empoli,2.15,3.30,3.50,-0.25,1.90,2.00,0-1,1-1
+2024-10-27,Lazio,Genoa,1.53,4.20,6.25,-1.00,2.02,1.88,1-0,3-0
+2024-10-27,Monza,Venezia,2.15,3.25,3.60,-0.25,1.67,2.20,2-2,2-2
+2024-10-27,Inter,Juventus,1.72,3.50,5.00,-0.75,1.67,2.20,3-2,4-4
+2024-10-27,Fiorentina,Roma,2.55,3.40,2.75,0.00,1.83,2.07,3-1,5-1
+2024-10-29,Cagliari,Bologna,3.00,3.25,2.35,0.25,1.73,2.10,0-1,0-2
+2024-10-29,Lecce,Verona,2.25,3.25,3.25,-0.25,1.67,2.20,0-0,1-0
+2024-10-29,Milan,Napoli,2.45,3.40,2.80,0.00,1.95,1.95,0-2,0-2
+2024-10-30,Empoli,Inter,7.50,4.33,1.44,1.25,2.00,1.80,0-0,0-3
+2024-10-30,Venezia,Udinese,2.70,3.25,2.65,0.00,1.67,2.20,1-2,3-2
+2024-10-30,Atalanta,Monza,1.30,5.00,10.00,-1.50,2.30,1.62,0-0,2-0
+2024-10-30,Juventus,Parma,1.40,4.75,8.00,-1.25,2.10,1.73,1-2,2-2
+2024-10-31,Genoa,Fiorentina,4.20,3.90,1.80,0.75,1.88,2.02,0-0,0-1
+2024-10-31,Como,Lazio,2.88,3.30,2.45,0.00,1.89,2.01,0-2,1-5
+2024-10-31,Roma,Torino,1.70,3.80,5.00,-0.75,1.91,1.99,1-0,1-0
+2024-11-02,Bologna,Lecce,1.62,3.50,6.50,-0.75,1.67,2.20,0-0,1-0
+2024-11-02,Udinese,Juventus,4.20,3.20,1.95,0.50,1.62,2.30,0-2,0-2
+2024-11-02,Monza,Milan,5.00,3.60,1.70,0.75,2.00,1.90,0-1,0-1
+2024-11-03,Napoli,Atalanta,2.05,3.40,3.70,-0.25,1.98,1.92,0-2,0-3
+2024-11-03,Torino,Fiorentina,3.20,3.30,2.25,0.25,1.73,2.10,0-1,0-1
+2024-11-03,Verona,Roma,5.00,3.50,1.80,0.50,1.86,2.04,2-1,3-2
+2024-11-03,Inter,Venezia,1.17,7.00,15.00,-2.00,2.75,1.44,0-0,1-0
+2024-11-04,Empoli,Como,2.70,3.10,2.63,0.00,1.62,2.30,0-0,1-0
+2024-11-04,Parma,Genoa,1.85,3.40,4.33,-0.50,2.05,1.85,0-0,0-1
+2024-11-04,Lazio,Cagliari,1.50,3.75,7.50,-1.00,2.06,1.84,1-1,2-1
+2024-11-07,Genoa,Como,2.88,3.30,2.45,0.00,1.67,2.20,0-1,1-1
+2024-11-08,Lecce,Empoli,2.40,3.00,3.30,-0.25,1.44,2.75,0-1,1-1
+2024-11-09,Venezia,Parma,2.55,3.40,2.70,0.00,1.67,2.20,1-1,1-2
+2024-11-09,Cagliari,Milan,5.50,4.10,1.60,1.00,2.20,1.67,1-2,3-3
+2024-11-09,Juventus,Torino,1.57,3.80,6.50,-1.00,1.67,2.20,1-0,2-0"
+
+"2024-11-10,Atalanta,Udinese,1.38,5.00,7.50,-1.25,2.30,1.62,0-1,2-1
+2024-11-10,Fiorentina,Verona,1.44,4.50,7.00,-1.25,2.00,1.80,1-1,3-
+1
+2024-11-10,Roma,Bologna,2.05,3.40,3.60,-0.25,1.67,2.20,0-1,2-3
+2024-11-10,Monza,Lazio,4.10,3.80,1.83,0.50,1.73,2.10,0-1,0-1
+2024-11-10,Inter,Napoli,1.85,3.70,4.10,-0.50,2.00,1.90,1-1,1-1
+2024-11-23,Verona,Inter,7.00,5.25,1.38,1.50,2.38,1.57,0-5,0-5
+2024-11-23,Milan,Juventus,2.15,3.30,3.50,-0.25,1.67,2.20,0-0,0-0"
+4. Validation and Format Verification
+Dataset Summary
+" ●   Total Record Count : 121 rows (fully exhausting the source context).
+●   Date Range : 2024-08-17 to 2024-11-23."
+" ●   Column Integrity : Verified 11 columns for every record.
+●   Null Check : 0 null values detected; all headers populated."
+" ●   Numeric Precision : 100% of odds and handicap values standardized to the 0.00
+      float format."
+Quality Assurance Checklist
+ ●   x Dates follow the ISO-8601 YYYY-MM-DD format.
+" ●   x All Asian Handicap commas (e.g., ""-0,25"") successfully transformed to numeric
+      dots (-0.25)."
+ ●   x Quotes removed from all handicap strings.
+ ●   x HT/FT scores synthesized with a hyphen delimiter.
+ ●   x CSV header row uses snake_case with no whitespace between commas.
